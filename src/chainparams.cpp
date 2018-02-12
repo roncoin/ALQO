@@ -55,28 +55,28 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 
 static Checkpoints::MapCheckpoints mapCheckpoints =
-    boost::assign::map_list_of(0, uint256("0x000006680a85db563f3a849c77e02a8c860068474ab2c5495cc24a2204727b62"));
+    boost::assign::map_list_of(0, uint256("0x00000a0ea155428698fb540c76459d8ae6846d66aa59f7246b47e6154a989d72"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1493667067, // * UNIX timestamp of last checkpoint block
-    1157185,    // * total number of transactions between genesis and last checkpoint
+    1518199201, // * UNIX timestamp of last checkpoint block
+    0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
-    boost::assign::map_list_of(0, uint256("0x0000083eda581357fce6db177da9049ee583b3d32236d4ff52e1f86fee2d5aad"));
+    boost::assign::map_list_of(0, uint256("0x0000030ddc68edad641710d4291cedab9223aa10f251e770a1f1d69d30b94ea9"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1454124731,
+    1518199202,
     0,
     250};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
-    boost::assign::map_list_of(0, uint256("0x00000fea76c2e8523777b3dce649c363b4c5e0234605cae551f8d822d17fcc16"));
+    boost::assign::map_list_of(0, uint256("0x0bea1275e4dcd15f646c7e5adda37d5f63130b8ad388d0b8756e8d877ad3e64a"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1454124731,
+    1518199203,
     0,
     100};
 
@@ -96,7 +96,7 @@ public:
         pchMessageStart[1] = 0x04;
         pchMessageStart[2] = 0x15;
         pchMessageStart[3] = 0x14;
-        vAlertPubKey = ParseHex("0497dfcea626dca270cfe2eebf1160733b07352af966926e30058ca53dae05bbc71d64dbaa0c66e373211e324a23b361fc33e1e2dece1fb90afcefc707643a28f5");
+        vAlertPubKey = ParseHex("04cf9f864336158105b71f0a196ee8710c25d08357feb641d1c9e33716434dc0e57bb802972e4b0201dcd8700337c343890b42968b6ee18d6b31202805a52de1e1");
         nDefaultPort = 55500;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // ALQO starting difficulty is 1 / 2^12  //20
         nSubsidyHalvingInterval = 210000;
@@ -114,24 +114,24 @@ public:
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
         nMaxMoneyOut = 100000000 * COIN;
 
-        const char* pszTimestamp = "30th October 2017 - ALQO - The day you'll remember.";
+        const char* pszTimestamp = "start test dash fork 07/01/2018 22/00";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 0 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("040fbf75ea45bf7eb65f9075e8342b7520d077b66f964e9b1963c96cefd9a2c52e93d0def918e0cd3c91f42821f429b2be4505552dede31c96f95f0d843da0beae") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("0451c278134675546a1a9375682686279d129e11ce6d0e467da10a34abaa90fa3c7e9d76436db4a56ccedfbb894d94507d8032da373bbda2515214c38e181ba065") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1509321601;
+        genesis.nTime = 1518199201;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 46765;
+        genesis.nNonce = 787387;
 		
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x000006680a85db563f3a849c77e02a8c860068474ab2c5495cc24a2204727b62"));
-        assert(genesis.hashMerkleRoot == uint256("0xb832a1d306b8e5b7feeb7f57ad908f6e93b89be00048393c923542036e135377"));
+        assert(hashGenesisBlock == uint256("0x00000a0ea155428698fb540c76459d8ae6846d66aa59f7246b47e6154a989d72"));
+        assert(genesis.hashMerkleRoot == uint256("0xcdf1190e352155899d5f3138d7b29a1de9c76aea4794730ac8b38e22e1dceefc"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 23);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16);
@@ -155,9 +155,9 @@ public:
 
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "049e53e687fdafd78fd42d730fad0e7ea1819396176a2cb85d7a76fa4559cdbd2c2f05330a6f5cbadb44a6c1d324f167e679e9f3e95d9d5649761a3e7f59bf4500";
+        strSporkKey = "04fedfacdaaf060e8a65abcba8e4cd323e655670a167956bfb0c1e242428ebad178e691bb3b7a7adcd819d25ea9e70a66574ae25b9484aebc61d90060eed6c9221";
         strDarksendPoolDummyAddress = "AcmpqXViWUXNroqVNYRdKjKrFM6PNa1oTM";
-        nStartMasternodePayments = 1510272000; //11/10/2017 @ 12:00am (UTC)
+        nStartMasternodePayments = 1518199201; //11/10/2017 @ 12:00am (UTC)
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
@@ -181,7 +181,7 @@ public:
         pchMessageStart[1] = 0x44;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0x54;
-        vAlertPubKey = ParseHex("04e1d34432d3a5803312f33cf20686b1801835ea8efb18ad77d50b5ec1ce5ca73de65c36c082ca5c51880f8ffb5a296d8dc780f1dc02f22eba4dde1816a6a54b75");
+        vAlertPubKey = ParseHex("04f71c8bc56e08264367df04fb80a9246ee216ad27347cf1fd285c548b2ea11b341a74051705486b1c6a61545ea131cf8133c8f56236fd6051c353a6ca1daa25fd");
         nDefaultPort = 55600;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
@@ -195,12 +195,12 @@ public:
         nMaxMoneyOut = 100000000 * COIN;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1509321602;
-        genesis.nNonce = 343913;
+        genesis.nTime = 1518199202;
+        genesis.nNonce = 2418082;
 
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000083eda581357fce6db177da9049ee583b3d32236d4ff52e1f86fee2d5aad"));
+        assert(hashGenesisBlock == uint256("0x0000030ddc68edad641710d4291cedab9223aa10f251e770a1f1d69d30b94ea9"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -230,9 +230,9 @@ public:
 
 
         nPoolMaxTransactions = 2;
-        strSporkKey = "049e53e687fdafd78fd42d730fad0e7ea1819396176a2cb85d7a76fa4559cdbd2c2f05330a6f5cbadb44a6c1d324f167e679e9f3e95d9d5649761a3e7f59bf4500";
+        strSporkKey = "042c96df82f3ae57726e29f16f6c254258e32aa013836ed6345457461f2209f337e45502679e8fe72848700a56809bb43088721fc809df009ca437c7af79ff84db";
         strDarksendPoolDummyAddress = "";
-        nStartMasternodePayments = 1510272000;
+        nStartMasternodePayments = 1518199202;
     }
     const Checkpoints::CCheckpointData& Checkpoints() const
     {
@@ -264,13 +264,13 @@ public:
         nTargetTimespan = 24 * 60 * 60; // ALQO: 1 day
         nTargetSpacing = 1 * 60;        // ALQO: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1509321603;
-        genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 129915;
+        genesis.nTime = 1518199203;
+        genesis.nBits = 0x207fffff;
+        genesis.nNonce = 2;
 		
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 55700;
-        assert(hashGenesisBlock == uint256("0x00000fea76c2e8523777b3dce649c363b4c5e0234605cae551f8d822d17fcc16"));
+        assert(hashGenesisBlock == uint256("0x0bea1275e4dcd15f646c7e5adda37d5f63130b8ad388d0b8756e8d877ad3e64a"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
